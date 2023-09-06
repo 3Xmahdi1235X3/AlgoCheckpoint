@@ -1,0 +1,89 @@
+ALGORITHM probl
+VAR
+   s1,s2 : ARRAY_OF INTEGER[5]; // Declare two arrays of integers with a maximum length of 5.
+   i,j,n,m,s : INTEGER; // Declare variables for indexing and storing the sum.
+
+BEGIN
+  Write('give the length of set1') // Prompt the user for the length of set1.
+  Read(n); // Read the user's input into the variable n.
+  
+   FOR i FROM 0 TO n-1 STEP 1 DO // Loop to input elements of set1.
+      Write('give the element number ',i+1,' of set1'); // Prompt for each element of set1.
+      Read(s1[i]); // Read the element into the set1 array at index i.
+   END_FOR
+   
+   Write('give the length of set2') // Prompt the user for the length of set2.
+   Read(m); // Read the user's input into the variable m.
+   
+   FOR i FROM 0 TO m-1 STEP 1 DO // Loop to input elements of set2.
+      Write('give the element number ',i+1,' of set2'); // Prompt for each element of set2.
+      Read(s2[i]); // Read the element into the set2 array at index i.
+   END_FOR
+
+   s:=0 // Initialize the sum variable s to 0.
+   
+   FOR i FROM 0 TO n-1 STEP 1 DO // Loop to compare elements of set1 with set2.
+      j:=0 // Initialize the index j for set2 to 0.
+      WHILE (j<m and s1[i]<>s2[j]) DO // Compare elements of set1 with set2 using a while loop.
+         j:=j+1 // Increment the index j for set2.
+      END_WHILE
+      IF (j>=m) THEN // If a common element is not found in set2.
+         s:=s+s1[i] // Add the common element to the sum s.
+      END_IF
+   END_FOR
+
+   FOR i FROM 0 TO m-1 STEP 1 DO // Loop to compare elements of set2 with set1.
+      j:=0 // Initialize the index j for set1 to 0.
+      WHILE (j<n and s2[i]<>s1[j]) DO // Compare elements of set2 with set1 using a while loop.
+         j:=j+1 // Increment the index j for set1.
+      END_WHILE
+      IF (j>=n) THEN // If a common element is not found in set1.
+         s:=s+s2[i] // Add the common element to the sum s.
+      END_IF
+   END_FOR
+
+   Write("sum = " , s ) // Display the final sum.
+
+END
+
+procedure dot_product (v1, v2: ARRAY_OF INTEGER[5], var ps: INTEGER)
+VAR
+   s: INTEGER
+BEGIN
+   s := 0 // Initialize the variable s to 0.
+   
+   FOR i FROM 0 TO v1.LEN STEP 1 DO // Loop through the elements of v1 and v2.
+      s := s + v1[i] * v2[i] // Calculate the dot product by multiplying and accumulating.
+   END_FOR  
+END
+Function dot_product(   v1, v2: ARRAY_OF INTEGER[5]) : INTEGER
+   s := 0 // Initialize the variable s to 0.
+   
+   FOR i FROM 0 TO v1.LEN STEP 1 DO // Loop through the elements of v1 and v2.
+      s := s + v1[i] * v2[i] // Calculate the dot product by multiplying and accumulating.
+   END_FOR  
+   return s 
+END
+algorithme Dot product
+BEGIN
+   Write("give n length of vectors ") // Prompt the user for the number of vectors.
+   Read(n) // Read the user's input into the variable n.
+   
+   FOR i FROM 0 TO n-1 STEP 1 DO // Loop to input elements for both vectors.
+      Write("give the element number ", i+1, " of vector 1") // Prompt for each element of vector 1.
+      Read(v1[i]) // Read the element into vector 1 at index i.
+      
+      Write("give the element number ", i+1, " of vector 2") // Prompt for each element of vector 2.
+      Read(v2[i]) // Read the element into vector 2 at index i.
+   END_FOR
+   
+   dot_product(v1, v2, s) // Call the dot_product procedure to calculate the dot product.
+   s=dot_product(v1,v2) // if using function 
+   IF (s == 0) THEN // Check if the dot product is zero.
+      Write("vectors are orthogonal") // Print that the vectors are orthogonal.
+   ELSE
+      Write("vectors are not orthogonal") // Print that the vectors are not orthogonal.
+   END_IF
+END
+
+
